@@ -18,14 +18,14 @@ const EditAccount = () => {
         e.preventDefault();
 
         if (stream == 'Netflix') {
-            await axios.patch(`http://5.15.152.9:5000/stream/${stream}/${id}`, {
+            await axios.patch(`http://localhost:5000/stream/${stream}/${id}`, {
                 email: email,
                 NetflixId: NetflixId,
                 SecureNetflixId: SecureNetflixId
             });
         }
         else
-            await axios.patch(`http://5.15.152.9:5000/stream/${stream}/${id}`, {
+            await axios.patch(`http://localhost:5000/stream/${stream}/${id}`, {
                 email: email,
                 password: password
             });
@@ -38,7 +38,7 @@ const EditAccount = () => {
 
     const getAccountById = async () => {
         console.log(id)
-        const response = await axios.get(`http://5.15.152.9:5000/stream/${stream}/${id}`);
+        const response = await axios.get(`http://localhost:5000/stream/${stream}/${id}`);
         setTitle(response.data.email);
         if (stream == 'Netflix') {
             setNetflixId(response.data.NetflixId)

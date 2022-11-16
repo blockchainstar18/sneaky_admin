@@ -12,7 +12,7 @@ const Generate = () => {
     }, []);
     const generateAccs = () => {
         // e.preventDefault();
-        axios.post('http://5.15.152.9:5000/exaccs', {
+        axios.post('http://localhost:5000/exaccs', {
             numberOfAccounts: numAccs,
             numberOfReplacements: numReps
         }).then((res) => {
@@ -21,7 +21,7 @@ const Generate = () => {
         });
     }
     const getAccounts = async () => {
-        const response = await axios.get('http://5.15.152.9:5000/exaccs');
+        const response = await axios.get('http://localhost:5000/exaccs');
 
         setAccount(response.data);
     }

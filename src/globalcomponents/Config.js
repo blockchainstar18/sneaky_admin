@@ -9,7 +9,7 @@ const Config = () => {
     const navigate = useNavigate()
     const postMsg = async (e) => {
         e.preventDefault();
-        await axios.patch('http://5.15.152.9:5000/msgs', {
+        await axios.patch('http://localhost:5000/msgs', {
             globalMsg: globMsg,
             fulfillMsg: fulfMsg
         });
@@ -21,7 +21,7 @@ const Config = () => {
     }, []);
 
     const getCurrMsg = async () => {
-        const response = await axios.get('http://5.15.152.9:5000/msgs')
+        const response = await axios.get('http://localhost:5000/msgs')
         setGlobMsg(response.data.globalMsg)
         setfulfMsg(response.data.fulfillMsg)
     }
