@@ -51,7 +51,8 @@ const AddAccount = () => {
                         email: st.split(':')[0],
                         password: st.split(':')[1]
                     }
-                    credentialArray.push(email_pass)
+                    if (email_pass.email.includes('@'))
+                        credentialArray.push(email_pass)
                 }
 
             })
