@@ -9,7 +9,7 @@ const DashBoard = () => {
     const [standbyusers, setStandByUsers] = useState([])
     const [fulfilledusers, setFulfilledUsers] = useState([])
     const getUsers = async () => {
-        const Users = await (await axios.get('http://5.15.152.9:3000/users')).data
+        const Users = await (await axios.get('http://5.15.152.9:5000/users')).data
         setUsers(Users)
 
         setActiveUsers(Users.filter(function (user) {

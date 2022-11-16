@@ -22,7 +22,7 @@ const AccountList = () => {
     }, []);
 
     const getAccounts = async (streaming) => {
-        const response = await axios.get(`http://5.15.152.9:3000/stream/${streaming}`);
+        const response = await axios.get(`http://5.15.152.9:5000/stream/${streaming}`);
 
         console.log(response)
         setAccount(response.data);
@@ -38,7 +38,7 @@ const AccountList = () => {
     }
 
     const deleteAccount = async (id) => {
-        await axios.delete(`http://5.15.152.9:3000/stream/${stream}/${id}`);
+        await axios.delete(`http://5.15.152.9:5000/stream/${stream}/${id}`);
         getAccounts(stream);
     }
 
