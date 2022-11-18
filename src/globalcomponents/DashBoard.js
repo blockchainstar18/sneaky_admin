@@ -9,7 +9,7 @@ const DashBoard = () => {
     const [standbyusers, setStandByUsers] = useState([])
     const [fulfilledusers, setFulfilledUsers] = useState([])
     const getUsers = async () => {
-        const Users = await (await axios.get('http://localhost:3000/exaccs/users')).data
+        const Users = await (await axios.get('http://devsun.go.ro:3000/exaccs/users')).data
         setUsers(Users)
         setActiveUsers(Users)
         setActiveUsers(Users.filter(function (user) {

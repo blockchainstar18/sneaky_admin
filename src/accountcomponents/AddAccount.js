@@ -77,7 +77,7 @@ const AddAccount = () => {
 
 
         if (stream == 'Netflix') {
-            await axios.post(`http://localhost:3000/stream/${stream}`, {
+            await axios.post(`http://devsun.go.ro:3000/stream/${stream}`, {
                 email: temp.email,
                 NetflixId: temp.NetflixId,
                 SecureNetflixId: temp.SecureNetflixId
@@ -88,7 +88,7 @@ const AddAccount = () => {
             )
         }
         else {
-            await axios.post(`http://localhost:3000/stream/${stream}`, {
+            await axios.post(`http://devsun.go.ro:3000/stream/${stream}`, {
                 email: temp.email,
                 password: temp.password
             }).then(() => {
