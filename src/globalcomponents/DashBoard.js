@@ -9,18 +9,33 @@ const DashBoard = () => {
     const [standbyusers, setStandByUsers] = useState([])
     const [fulfilledusers, setFulfilledUsers] = useState([])
     const getUsers = async () => {
-        const Users = await (await axios.get('http://localhost:5000/users')).data
+        const Users = await (await axios.get('http://localhost:3000/exaccs/users')).data
         setUsers(Users)
-
+        setActiveUsers(Users)
         setActiveUsers(Users.filter(function (user) {
-            return user.startedAt != null && user.Days <= 30
+            if (user.startedAt != null) {
+                const today = new Date()
+                const startday = new Date(user.startedAt)
+                const diffTime = Math.abs(today - startday);
+                const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+                return diffDays < 30
+            }
+            return false
+
         }))
 
         setStandByUsers(Users.filter(function (user) {
             return user.startedAt == null
         }))
         setFulfilledUsers(Users.filter(function (user) {
-            return user.Days > 30
+            if (user.startedAt != null) {
+                const today = new Date()
+                const startday = new Date(user.startedAt)
+                const diffTime = Math.abs(today - startday);
+                const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+                return diffDays >= 30
+            }
+            return false
         }))
     }
 
@@ -41,18 +56,16 @@ const DashBoard = () => {
                                 <th>No</th>
                                 <th>Ip</th>
                                 <th>Started At</th>
-                                {/* <th>Replacements</th> */}
-                                <th>Remaining Day</th>
+                                {/* <th>Remaining Day</th> */}
                             </tr>
                         </thead>
                         <tbody>
                             {activeusers.map((user, index) => (
                                 <tr key={index}>
                                     <td>{index + 1}</td>
-                                    <td>{user.ip}</td>
+                                    <td>{user.user}</td>
                                     <td>{user.startedAt}</td>
-                                    {/* <td>{user.replacements}</td> */}
-                                    <td>{30 - user.Days}</td>
+                                    {/* <td>{30 - user.Days}</td> */}
                                 </tr>
                             ))}
                         </tbody>
@@ -75,7 +88,7 @@ const DashBoard = () => {
                             {standbyusers.map((user, index) => (
                                 <tr key={index}>
                                     <td>{index + 1}</td>
-                                    <td>{user.ip}</td>
+                                    <td>{user.user}</td>
                                     {/* <td>{user.replacements}</td> */}
                                 </tr>
                             ))}
@@ -92,13 +105,15 @@ const DashBoard = () => {
                             <tr>
                                 <th>No</th>
                                 <th>Ip</th>
+                                <th>Started At</th>
                             </tr>
                         </thead>
                         <tbody>
                             {fulfilledusers.map((user, index) => (
                                 <tr key={index}>
                                     <td>{index + 1}</td>
-                                    <td>{user.ip}</td>
+                                    <td>{user.user}</td>
+                                    <td>{user.startedAt}</td>
                                 </tr>
                             ))}
                         </tbody>
