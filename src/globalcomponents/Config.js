@@ -5,14 +5,14 @@ const Config = () => {
     const [Msgs, setMsgs] = useState([])
     const [newMsg, setNewmsg] = useState('')
     const submitMsg = () => {
-        axios.post('http://devsun.go.ro:3000/msgs', {
+        axios.post('http://localhost:3000/msgs', {
             Msgs: newMsg
         }).then(() =>
             window.location.reload()
         )
     }
     const deleteMsg = (Msgs) => {
-        axios.patch('http://devsun.go.ro:3000/msgs', {
+        axios.patch('http://localhost:3000/msgs', {
             Msgs: Msgs
         }).then(() =>
             window.location.reload()
@@ -25,7 +25,7 @@ const Config = () => {
     }, []);
 
     const getCurrMsg = async () => {
-        const response = await axios.get('http://devsun.go.ro:3000/msgs')
+        const response = await axios.get('http://localhost:3000/msgs')
         console.log(response.data)
         setMsgs(response.data)
     }
